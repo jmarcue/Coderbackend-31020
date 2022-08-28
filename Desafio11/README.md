@@ -1,4 +1,5 @@
 # CoderBackend
+============================
 
 ## Desafio entregable n° 11 - LOG-IN POR FORMULARIO
 
@@ -8,6 +9,4 @@ Sugerencia: no incluir los node_modules
 
 Consigna:
 
-```
-Incorporaremos un mecanismo sencillo que permite loguear un cliente por su nombre mediante un formulario de ingreso.
-```
+>Incorporaremos un mecanismo sencillo que permite loguear un cliente por su nombre mediante un formulario de ingreso.
