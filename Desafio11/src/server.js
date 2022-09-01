@@ -53,7 +53,7 @@ app.set('view engine', 'hbs');
 // Cookie
 app.use(cookieParser());
 
-// Session
+// Session setup
 const advancedOptions = {useNewUrlParser: true, useUnifiedTopology: true};
 app.use(session({
   store: MongoStore.create({
@@ -62,7 +62,7 @@ app.use(session({
       ttl: 60,
       collectionName: 'sessions'
   }),
-  secret: '123456',
+  secret: '12345',
   resave: true,
   saveUninitialized: true,
   cookie: {

@@ -16,7 +16,7 @@ socket.on('auth', name => {
 });
 
 const hbsForm = () => {
-    return fetch('hbs/formProductos.hbs')
+    return fetch('hbs/productForm.hbs')
         .then(res => res.text())
         .then(form => {
             const hbs = Handlebars.compile(form);
@@ -25,11 +25,11 @@ const hbsForm = () => {
         });
 };
 
-socket.on('formProductos', () => {
+socket.on('productForm', () => {
     hbsForm()
         .then(html => {
-            document.querySelector('#formProductos').innerHTML = html;
-            const addProduct = document.querySelector('#formProductos').querySelector('#addProductForm');
+            document.querySelector('#productForm').innerHTML = html;
+            const addProduct = document.querySelector('#productForm').querySelector('#addProductForm');
             addProduct.addEventListener('submit', e => {
                 e.preventDefault();
                 const product = {
