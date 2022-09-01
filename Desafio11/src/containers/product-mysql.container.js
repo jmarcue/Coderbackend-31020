@@ -68,13 +68,13 @@ class productMysqlContainer {
     }     
   }  
 
-  async updateById(idProduct, name, price, thumbnail) {
+  async updateById(idProduct, title, price, thumbnail) {
     try {
       await this.knex
         .from(this.tableName)
         .where('id', '=', idProduct)
         .then(product => {
-          product.name = name;
+          product.title = title;
           product.price = price;
           product.thumbnail = thumbnail;
 

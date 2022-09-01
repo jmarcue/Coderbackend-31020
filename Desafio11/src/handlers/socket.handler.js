@@ -14,8 +14,8 @@ const socketConfig = async (socket, sockets) => {
   const getMessages = await messageStorage.getAll();
 
   socket.emit('productForm');
-  socket.emit('mensajes');
-  socket.emit('tablaProductos', getProducts);
+  socket.emit('messages');
+  socket.emit('productTable', getProducts);
   socket.emit('chat', getMessages);
   socket.emit('auth', getUserName(userName));
   
@@ -23,7 +23,7 @@ const socketConfig = async (socket, sockets) => {
     console.log(product);
 
     await productStorage.save(product);
-    sockets.emit('tablaProductos', await productStorage.getAll());
+    sockets.emit('productTable', await productStorage.getAll());
   });  
 
   socket.on('addMessage', async message => {
