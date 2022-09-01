@@ -1,5 +1,5 @@
 const getForm = (req, res) => { 
-    res.render('formProducts');
+    res.render('product-form');
 }
 
 export { getForm }

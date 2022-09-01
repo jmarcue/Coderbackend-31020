@@ -27,16 +27,12 @@ export default class productFirebaseContainer {
     await this.queryProduct.add(product);
   }
 
-  async updateById(idProduct, date, title, code, description, price, stock, thumbnail) {
+  async updateById(idProduct, name, price, thumbnail) {
     const docsProducts = this.queryProduct.doc(idProduct);
     await docsProducts.update({
-      title: title,
-      code: code,        
-      description: description,
+      name: name,
       price: price,
-      thumbnail: url,  
-      timestamp: date,
-      stock: stock
+      thumbnail: thumbnail
     });
   }  
 }

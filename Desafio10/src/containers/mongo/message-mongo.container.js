@@ -1,7 +1,7 @@
 export default class messageMongoContainer {
-  constructor(mongo, messsageModel) {
+  constructor(mongo, messageModel) {
     this.mongo = mongo;
-    this.messsageModel = messsageModel;
+    this.messageModel = messageModel;
   }
 
   async getAll() {
@@ -23,7 +23,7 @@ export default class messageMongoContainer {
   async save(message) {
     try {
       const newMessage = new this.messageModel(message);
-      this.mongoDB
+      this.mongo
         .then(_ => newMessage.save())
         .catch(err => console.log(`Error: ${err.message}`));
 

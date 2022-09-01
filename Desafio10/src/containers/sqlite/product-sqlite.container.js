@@ -27,12 +27,11 @@ class productSqliteContainer {
   
   async save(obj) {
     try {
-      await this.knex(this.tableName).insert(obj);
-      return true;
+      const insertId = await this.knex(this.tableName).insert(obj);
+      return await this.getById(insertId);
     }       
     catch (err) {
       console.log(`Error Codigo: ${error.code} | Error inesperado al intentar guardar datos en ${this.tableName}`);
-      return false;
     }  
   }
 

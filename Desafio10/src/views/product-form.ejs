@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <%- include('./partials/head') %>
+    <title>Producto</title>
+  </head>
+  <body>
+    <div class="container">
+      <%- include('./partials/header', {current: 'product-form'}) %>      
+      <div class="jumbotron">
+        <h2>Ingresar datos:</h2>
+        <div class="form-group">
+          <label for="title">Nombre</label>
+          <input type="text" name="title" class="form-control" id="nameForm">
+        </div>
+        <div class="form-group">
+          <label for="price">Precio</label>
+          <input type="number" name="price" class="form-control" id="priceForm">
+        </div>
+        <div class="form-group">
+            <label for="thumbnail">Imagen</label>
+            <input type="text" name="thumbnail" class="form-control" id="thumbnailForm">
+        </div>
+        <button id="saveProduct" class="btn btn-primary">Enviar</button>        
+      </div>        
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Foto</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyProducts"></tbody>                
+      </table>        
+      <footer><%- include('./partials/footer') %></footer>        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./product.js"></script>
+  </body>
+</html>

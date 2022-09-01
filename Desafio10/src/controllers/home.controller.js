@@ -1,7 +1,7 @@
 const getHome = (req, res) => {
     const textData = {
         title: "Desafio n°10 - Mocks y Normalización",
-        content: "En la web se podrán ingresar productos, chatear en tiempo real"
+        content: null
     }
     return res.render('index', textData);
 }

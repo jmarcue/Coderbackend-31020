@@ -1,5 +1,5 @@
 import knexLib from 'knex'
-import { sqliteConfig } from '../../config/sqllite.config.js';
+import { sqliteConfig } from '../../config/sqlite.config.js';
 
 async function sqliteMigration() {
   try {

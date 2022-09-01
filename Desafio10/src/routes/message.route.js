@@ -1,7 +1,7 @@
-import Router from 'express';
+import express from 'express';
 import { getMessage } from '../controllers/message.controller.js'
 
-const messageRoute = Router();
+const messageRoute = express.Router();
 
 messageRoute.get('/', getMessage);
 

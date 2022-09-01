@@ -45,17 +45,13 @@ export default class productMongoContainer {
       .catch(err => console.log(`Error: ${err.message}`));
   }
 
-  async updateById(idProduct, date, title, code, description, price, stock, thumbnail) {
+  async updateById(idProduct, name, price, thumbnail) {
     this.mongo
       .then(_ => this.productsModel.findOne({ _id: idProduct }, { __v: 0 }))
       .then(product => {
-        product.title = title;
-        product.code = code;
-        product.description = description;
+        product.name = name;
         product.price = price;
         product.thumbnail = thumbnail;
-        product.date = date;
-        product.stock = stock;
 
         return product.save();
       })

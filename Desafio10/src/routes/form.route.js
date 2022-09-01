@@ -1,7 +1,7 @@
-import Router from 'express';
+import express from 'express';
 import { getForm } from '../controllers/form.controller.js'
 
-const formRoute = Router();
+const formRoute = express.Router();
 
 formRoute.get('/', getForm);
 

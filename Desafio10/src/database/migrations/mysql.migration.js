@@ -5,17 +5,17 @@ const productsList = [
   {
     name: "Business",
     price: 100,
-    url: "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/7_avatar-128.png",
+    thumbnail: "https://cdn3.iconfinder.com/data/icons/business-avatar-1/512/7_avatar-128.png",
   },
   {
     name: "Prohibition",
     price: 200,
-    url: "https://cdn1.iconfinder.com/data/icons/prohibition-1/512/3_Forbidden-128.png",
+    thumbnail: "https://cdn1.iconfinder.com/data/icons/prohibition-1/512/3_Forbidden-128.png",
   },
   {
     name: "Social",
     price: 500,
-    url: "https://cdn4.iconfinder.com/data/icons/social-media-2146/512/8_social-128.png",
+    thumbnail: "https://cdn4.iconfinder.com/data/icons/social-media-2146/512/8_social-128.png",
   },
 ];
 
@@ -30,7 +30,7 @@ async function mysqlMigration() {
       table.increments('id').primary();
       table.string('name', 100).notNullable();
       table.decimal('price').notNullable();
-      table.string('url', 200).notNullable();
+      table.string('thumbnail', 200).notNullable();
       table.timestamps(true, true);
     });
  

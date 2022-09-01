@@ -27,12 +27,11 @@ class productMysqlContainer {
   
   async save(obj) {
     try {
-      await this.knex(this.tableName).insert(obj);
-      return true;
+      const insertId = await this.knex(this.tableName).insert(obj);
+      return await this.getById(insertId);
     }       
     catch (err) {
       console.log(`Error Codigo: ${error.code} | Error inesperado al intentar guardar datos en ${this.tableName}`);
-      return false;
     }  
   }
 
@@ -69,19 +68,15 @@ class productMysqlContainer {
     }     
   }  
 
-  async updateById(idProduct, date, title, code, description, price, stock, thumbnail) {
+  async updateById(idProduct, name, price, thumbnail) {
     try {
       await this.knex
         .from(this.tableName)
         .where('id', '=', idProduct)
         .then(product => {
-          product.title = title;
-          product.code = code;
-          product.description = description;
+          product.name = name;
           product.price = price;
           product.thumbnail = thumbnail;
-          product.date = date;
-          product.stock = stock;
 
           return product.save();          
         });
