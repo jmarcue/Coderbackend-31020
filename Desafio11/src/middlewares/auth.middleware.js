@@ -1,14 +1,15 @@
-import { getName } from '../handlers/socket.handler.js';
+import { getUserName } from '../handlers/socket.handler.js';
 import { __dirname, __dirJoin } from '../utils/helper.util.js';
 
-const auth = (req, res, next) => {
+const userAuth = (req, res, next) => {
+  // console.log(req.session);
   if (req.session?.nombre !== undefined) {
-    getName(req.session.nombre);
+    getUserName(req.session.nombre);
     next();
   }
   else {
-    res.sendFile(__dirJoin(__dirname, '../views/home.html'));
+    res.sendFile(__dirJoin(__dirname, '../public/home.html'));
   }
 };
 
-export { auth }
+export { userAuth }

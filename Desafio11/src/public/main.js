@@ -12,7 +12,7 @@ const hbsLog = (name) => {
 
 socket.on('auth', name => {
   hbsLog(name)
-    .then(html => { document.querySelector('#log').innerHTML = html; });
+    .then(html => { document.querySelector('#auth').innerHTML = html; });
 });
 
 const hbsForm = () => {
@@ -110,7 +110,6 @@ const hbsChat = (message) => {
 };
 
 socket.on('chat', message => {
-    console.log(message);
     hbsChat(message)
         .then(html => {
             const messages = document.querySelector("#mensajes");

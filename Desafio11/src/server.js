@@ -8,12 +8,12 @@ import { Server } from 'socket.io';
 import { engine } from 'express-handlebars';
 import { serverEnv } from './config/server.config.js';
 import { socketConfig } from './handlers/socket.handler.js';
-import { auth } from './middlewares/auth.middleware.js';
+import { userAuth } from './middlewares/auth.middleware.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
 
 // routes
 import { homeRoute } from "./routes/home.route.js";
-import { loginRoute } from "./routes/auth.route.js";
+import { authRoute } from "./routes/auth.route.js";
 
 // Port.
 const PORT = process.env.PORT || 8080;
@@ -71,8 +71,8 @@ app.use(session({
 }));
 
 // routes
-app.use('/log', loginRoute)
-app.use('/', auth, homeRoute);
+app.use('/auth', authRoute)
+app.use('/', userAuth, homeRoute);
 
 
 // conexion.

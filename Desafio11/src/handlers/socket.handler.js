@@ -3,10 +3,10 @@ import { Storage } from "../daos/index.js";
 const messageStorage = Storage('mongo').message;
 const productStorage = Storage('mongo').product;
 
-let logName;
+let userName;
 
-const getName = (name) => {
-  return logName = name;
+const getUserName = (name) => {
+  return userName = name;
 };
 
 const socketConfig = async (socket, sockets) => {
@@ -17,7 +17,7 @@ const socketConfig = async (socket, sockets) => {
   socket.emit('mensajes');
   socket.emit('tablaProductos', getProducts);
   socket.emit('chat', getMessages);
-  socket.emit('auth', getName(logName));
+  socket.emit('auth', getUserName(userName));
   
   socket.on('addProduct', async product => {
     await productStorage.save(product);
@@ -30,4 +30,4 @@ const socketConfig = async (socket, sockets) => {
   });
 };
 
-export { socketConfig , getName}
+export { socketConfig , getUserName}
