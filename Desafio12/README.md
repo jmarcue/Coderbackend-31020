@@ -30,4 +30,8 @@ Esta estará activa por 10 minutos y en cada acceso se recargará este tiempo.
 Agregar también vistas de error para login (credenciales no válidas) y registro
 (usuario ya registrado).
 
+<<<<<<< HEAD
 El resto de la funciones, deben quedar tal cual estaban el proyecto original.
+=======
+El resto de la funciones, deben quedar tal cual estaban el proyecto original.
+>>>>>>> 07a9e94869d957c4b2bea2ef1cd2bc846948d57d
