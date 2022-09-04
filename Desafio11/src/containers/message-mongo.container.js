@@ -25,7 +25,6 @@ export default class messageMongoContainer {
       this.mongo
         .then(_ => newMessage.save())
         .catch(err => console.log(`Error: ${err.message}`));
-
     }
     catch (error) {
       throw Error('Error al guardar el mensaje');

@@ -20,15 +20,15 @@ const socketConfig = async (socket, sockets) => {
   socket.emit('auth', getUserName(userName));
   
   socket.on('addProduct', async product => {
-    console.log(product);
-
     await productStorage.save(product);
-    sockets.emit('productTable', await productStorage.getAll());
+    const products = await productStorage.getAll();
+    sockets.emit('productTable', products);
   });  
 
   socket.on('addMessage', async message => {
     await messageStorage.save(message);
-    sockets.emit('chat', await messageStorage.getAll());
+    const messages = await messageStorage.getAll();
+    sockets.emit('chat', messages);
   });
 };
 

@@ -86,15 +86,15 @@ socket.on('messages', () => {
       newMessage.addEventListener('submit', e => {
         e.preventDefault();        
         if (((!newMessage[0].value) && (!newMessage[1].value)) || ((!newMessage[0].value) || (!newMessage[1].value))) {
-                    alert("Completar los campos obligatorios");
+          alert("Completar los campos obligatorios");
         }
         else {
-          const msj = {
+          const message = {
               mail: newMessage[0].value,
               date: new Date().toLocaleString('es-CL'),
               message: newMessage[1].value,
           };
-          socket.emit('addMessage', msj);
+          socket.emit('addMessage', message);
           newMessage.reset();
         };
       });
@@ -112,6 +112,7 @@ const hbsChat = (message) => {
 };
 
 socket.on('chat', message => {
+  console.log("chat");
   hbsChat(message)
     .then(html => {
       const messages = document.querySelector("#messages");

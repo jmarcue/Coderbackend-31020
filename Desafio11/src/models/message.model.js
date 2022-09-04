@@ -1,20 +1,9 @@
 import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema({
-    id: { 
-      type: String,
-      required: true
-    },
-    author: { 
-      type: Object,
-      required: true 
-    },
-    text: {
-      type: Object,
-      required: true 
-    }}, 
-  {
-    versionKey: false }
-);
+    mail: { type: String },
+    date: { type: String },
+    message: { type: String }
+});
 
-export const messageModel = mongoose.model("Message", messageSchema);
+export const messageModel = mongoose.model("Message", messageSchema, "message");
