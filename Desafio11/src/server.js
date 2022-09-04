@@ -39,17 +39,6 @@ app.engine('hbs', engine({
 app.set('views', __dirJoin(__dirname, '../views'));
 app.set('view engine', 'hbs');
 
-/*
-app.engine('hbs', engine({
-  extname: '.hbs',
-  defaultLayout: 'index.hbs',
-  layoutsDir: __dirJoin(__dirname, '../views/layouts'),
-  partialsDir: __dirJoin(__dirname, '../views/partials')
-}));
-app.set('views', __dirJoin(__dirname, '../views'));
-app.set('view engine', 'hbs');
-*/
-
 // Cookie
 app.use(cookieParser());
 
