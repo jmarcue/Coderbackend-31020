@@ -1,11 +1,11 @@
-import messageDao from '../daos/message.dao.js';
+import messageMongoDao from '../daos/message-mongo.dao.js';
 
 export default class messageController {
   constructor() { 
-    this.message = new messageDao();
+    this.message = new messageMongoDao();
   }
 
-  async messageSave(req, res) {
+  async save(req, res) {
     try {
       if (!req) {
         return res.status(404).json({ text: 'Error al agregar mensaje' });
@@ -18,7 +18,7 @@ export default class messageController {
     }
   }
 
-  async messageGetAll(req, res) {
+  async getAll(req, res) {
     try {
       let messages = await this.message.getAll();
       return res.status(200).json(messages);

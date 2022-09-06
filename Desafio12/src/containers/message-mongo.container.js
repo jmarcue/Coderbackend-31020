@@ -1,4 +1,4 @@
-export default class messageContainer {
+export default class messageMongoContainer {
   constructor(mongo, messageModel) {
     this.mongo = mongo;
     this.messageModel = messageModel;
