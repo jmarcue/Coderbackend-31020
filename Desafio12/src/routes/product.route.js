@@ -1,10 +1,14 @@
 import express from 'express';
-import productController from '../controllers/message.controller.js'
+import productClass from '../controllers/product.controller.js';
+import { validate } from '../middlewares/auth.js'
 
 const productRoute = express.Router();
-const product = new productController();
+const product = new productClass();
 
-productRoute.post('/', product.save);
-productRoute.get('/', product.getAll);
+productRoute.post('/', validate, product.add);
+productRoute.get('/', validate, product.findAll);
+productRoute.get('/:id', validate, product.findByID);
+productRoute.delete('/:id', validate, product.deleteProd);
+productRoute.put('/:id', validate, product.update);
 
 export default productRoute;

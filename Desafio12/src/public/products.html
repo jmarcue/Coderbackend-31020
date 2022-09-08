@@ -5,32 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
     <div>
-      <!-- Formulario producto -->
-      <h2 style="text-align:center; margin-top:1rem">Ingreso Producto</h2>
+      <!-- Inicio Formulario Producto -->
+      <h2 style="text-align:center; margin-top:1rem">Ingreso de producto</h2>
       <div class="container bg-secondary text-white p-2">
+
         <div class="mb-3">
           <label for="title" class="form-label">Producto</label>
-          <input type="text" class="form-control" id="title" name="title">
+          <input type="text" class="form-control" id="title" name="title" placeholder="Ej: Cafe" autocomplete="off">
         </div>
         <div class="mb-3">
           <label for="price" class="form-label">Precio</label>
-          <input type="number" class="form-control" id="price" name="price">
+          <input type="number" class="form-control" id="price" name="price" placeholder="Ej: 23" autocomplete="off">
         </div>
         <div class="mb-3">
-          <label for="thumbnail" class="form-label">Url</label>
-          <input type="text" class="form-control" id="thumbnail" name="thumbnail">
+          <label for="thumbnail" class="form-label">Imagen</label>
+          <input type="text" class="form-control" id="thumbnail" name="thumbnail"
+            placeholder="Ej: https://www.iconfinder.com/icons/889376/barista_coffee_doppio_espresso_icon"
+            autocomplete="off">
         </div>
-        <button type="submit" class="btn btn-primary btn-sm" id="btnProductForm">Agregar</button>
+        <button type="submit" class="btn btn-primary btn-sm" id="btnForm">Agregar</button>
+        <!-- Fin Formulario Producto -->
+
+        <!-- Inicio Listado Productos -->
       </div>
-      <!-- Listado productos -->    
-      <div id="titleProductList">
-        <h2 style="text-align:center; margin:1rem">Listado Productos</h2>
+      <div id="tituloListaProductos">
+        <h2 style="text-align:center; margin:1rem">Productos</h2>
       </div>
       <div class="container bg-light text-dark p-2">
         <table class="table table-striped" id="table">
@@ -38,7 +43,7 @@
             <tr>
               <th>Producto</th>
               <th>Precio</th>
-              <th>Url</th>
+              <th>Imagen</th>
             </tr>
           </thead>
           <tbody id="tableProd">
@@ -55,19 +60,19 @@
       </div>
     </div>
     <hr>
-    <!-- Chat -->
+    <!-- Inicio Chat -->
     <div class="container bg-secondary text-white p-2" id="divChat">
-      <h1 style="text-align: center">Chat</h1>
+      <h1 style="text-align: center">Mensajes</h1>
       <div style="display:flex; justify-content:space-around">
         <div>
-          <div id="chatWindow">
-            <div id="messageOld"></div>
+          <div id="ventana">
+            <div id="pantallaOld"></div>
             <hr>
-            <div id="messageNew"></div>
+            <div id="pantalla"></div>
           </div>
         </div>
         <div>
-          <button type="submit" id="btnOldMsg" class="btn btn-warning btn-sm">Mensaje Guardados</button>
+          <button type="submit" id="btnOldMsg" class="btn btn-warning btn-sm">Mensajes Guardados</button>
           <input type="text" id="userChat" placeholder="E-mail" required>
           <input type="text" id="messageChat" placeholder="Mensaje" required>
           <button type="submit" id="btnChat" class="btn btn-primary btn-sm">Enviar</button>

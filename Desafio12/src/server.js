@@ -1,107 +1,91 @@
 import express from 'express';
 import { Server as serverHttp } from 'http';
-import { Server as serverIO } from 'socket.io';
-import MongoStore from 'connect-mongo';
+import { Server as ServerIO } from 'socket.io';
 import session from 'express-session';
 import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
-
+import morgan from 'morgan';
+import('./middlewares/passport.middleware.js');
 import { __dirname, __dirJoin } from './utils/helper.util.js';
-import { serverConfig } from "./config/server.config.js";
-import { mongoConnect } from "./config/mongo.config.js";
 
 // routes
-import messageRoute from './routes/message.route.js';
 import productRoute from './routes/product.route.js';
+import messageRoute from './routes/message.route.js';
 import userRoute from './routes/user.route.js';
 
-// Controllers.
-import messageController from './controllers/message.controller.js';
-import productController from './controllers/product.controller.js';
+// controllers
+import messageClass from './controllers/message.controller.js';
+import productClass from './controllers/product.controller.js';
 
-// config server
+// Server 
 const app = express();
 const http = new serverHttp(app);
-const io = new serverIO(http);
-const PORT = serverConfig.PORT;
-
-mongoConnect
-  .then(() => { console.log('Conectado a Mongoose') },
-    err => { err }
-  );
+const io = new ServerIO(http);
+const PORT = 8080;
 
 // Middlewares
-app.use(cookieParser());
-
-// statics files
-app.use(express.static(__dirJoin(__dirname, '../public')));
-app.set('views', __dirJoin(__dirname, '../views'));
-app.set('view engine', 'ejs');
-
-
-// maxAge & ttl: tiempo en milisegundos => 10 min = 60000 ms * 10
+app.use(cookieParser())
 app.use(session({
-    secret: '12345',
+    secret: 'secretKey',
     rolling: true,
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60000 
-    },
-    store: MongoStore.create({
-      mongoUrl: serverConfig.MONGO_ATLAS,
-      mongoOptions: {useNewUrlParser: true, useUnifiedTopology: true},
-      ttl: 60000,
-      collectionName: 'sessions'
-    }),    
+        maxAge: 60000 // tiempo en milisegundos (10 min = 60000 ms * 10)
+    }
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morgan('dev'));
 app.use(flash());
 app.use((req, res,next) => {
-  res.locals.user = req.user;
-  res.locals.error = req.flash('error');
-  res.locals.success = req.flash('success');
-  res.locals.welcome = req.flash('welcome');
-  next();
+    res.locals.user = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
+    res.locals.welcome = req.flash('welcome');
+    next();
 });
+app.use(express.static(__dirJoin(__dirname, '../public')));
 
-// Endpoints
-app.use('/api/products', productRoute);
-app.use('/messages', messageRoute);
+// Ejs
+app.set('views', __dirJoin(__dirname, '../views'));
+app.set('view engine', 'ejs');
+
+// endpoints
+app.use('/api/productos', productRoute);
+app.use('/mensajes', messageRoute);
 app.use('/user', userRoute);
 app.get('/', function (req, res) { res.render('index') });
 
 
-// controllers
-const messageCtrl = new messageController();
-const productCtrl = new productController();
+const messages = new messageClass();
+const prodClass = new productClass();
 
-// Web Sockets
-let chat = [];
+// Sockets
+let toChat = []
 io.on('connection', socket => {
-  console.log(`Cliente id:${socket.id} inició conexión`);
-  io.sockets.emit('new-message-server', chat);
+  console.log(`Cliente ID:${socket.id} inició conexión`)
+  io.sockets.emit('new-message-server', toChat)
 
   socket.on('new-message', async data => {
-    const messageData = await data;
-    chat.push(messageData);    
-    messageCtrl.save({ messageData });
-    io.sockets.emit('new-message-server', chat)
+      const message = await data;
+      toChat.push(data);
+      messages.addMsg({ message })
+      io.sockets.emit('new-message-server', toChat)
   });
 
-  socket.on('new-product', async data => {
-    const productData = await data;
-    productCtrl.add({ productData });
-    io.sockets.emit('new-prod-server', productData);
+  socket.on('new-producto', async data => {
+      const producto = await data;
+      prodClass.add({ producto })
+      io.sockets.emit('new-prod-server', producto)
   });
 });
 
-// server
+// server connection
 const server = http.listen(PORT, () => {
-  console.log(`Servidor escuchando en puerto: ${server.address().port}`);
+    console.log(`Servidor http en puerto: ${server.address().port}`);
 });
-server.on('error', error => console.log(`Error en servidor ${error}`));
+server.on("error", error => console.log(`Error en servidor ${error}`));

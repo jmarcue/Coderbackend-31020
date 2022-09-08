@@ -1,30 +1,33 @@
-import messageMongoDao from '../daos/message-mongo.dao.js';
+import messageModel from '../models/message.model.js';
+import mongoConnect from '../config/mongo.config.js';
 
-export default class messageController {
-  constructor() { 
-    this.message = new messageMongoDao();
+class messageClass {
+  constructor () {
+    this.cxn = new mongoConnect();
   }
 
-  async save(req, res) {
+  async addMsg(req, res) {
     try {
       if (!req) {
-        return res.status(404).json({ text: 'Error al agregar mensaje' });
+        return res.status(404).json({ mensaje: 'Error al agregar un producto' });
       }
-      const newMessage = await { ...req };
-      await this.message.save(newMessage);
+      const data = await { ...req };
+      const newMsg = await messageModel.create(data);
     }
     catch (error) {
-      return res.status(400).json({ text: 'Ocurrió un error', error });
+      console.log(error);
     }
   }
 
-  async getAll(req, res) {
+  async findAllMsg(req, res) {
     try {
-      let messages = await this.message.getAll();
-      return res.status(200).json(messages);
+      let msgInDb = await messageModel.find();
+      return res.status(200).json(msgInDb);
     }
     catch (error) {
-      return res.status(400).json({ text: 'Ocurrió un error', error });
+      return res.status(400).json({ mensaje: 'Ocurrió un error', error });
     }
   }
 }
+
+export default messageClass;

@@ -1,8 +1,14 @@
-import mongoose from "mongoose";
-import { serverConfig } from "./server.config.js";
+import mongoose from 'mongoose';
 
-const mongoOptions = { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true };
+export default class mongoConnect {
+  constructor() {
+      this.connection = this.createConnection();
+  }
 
-const mongoConnect = mongoose.connect(serverConfig.MONGO_ATLAS, mongoOptions);
-
-export { mongoConnect }
+  createConnection() {
+    const uri = 'mongodb://localhost:27017/coder';
+    const options = { useNewUrlParser: true, useUnifiedTopology: true }
+    
+    mongoose.connect(uri, options).then(err => { err });
+  }
+}

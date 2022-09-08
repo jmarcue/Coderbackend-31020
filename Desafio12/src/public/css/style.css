@@ -1,4 +1,4 @@
-#chatWindow{
+#ventana{
     background: white;
     color: black;
     padding-left: 5px;
@@ -42,7 +42,7 @@
     height: 300px;
 }
 
-#titleProductList {
+#tituloListaProductos {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -56,6 +56,3 @@
 #divChat {
     margin-top: 30px;
 }
-
-
-
