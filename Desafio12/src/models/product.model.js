@@ -5,7 +5,7 @@ const productoSchema = new Schema({
   title: { type: String },
   price: { type: Number },
   thumbnail: { type: String }    
-})
+});
 
 const productModel = mongoose.model('productModel', productoSchema, 'products');
 export default productModel;

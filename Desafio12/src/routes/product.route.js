@@ -1,6 +1,6 @@
 import express from 'express';
 import productClass from '../controllers/product.controller.js';
-import { validate } from '../middlewares/auth.js'
+import { validate } from '../middlewares/auth.middleware.js'
 
 const productRoute = express.Router();
 const product = new productClass();
