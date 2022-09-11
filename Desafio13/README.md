@@ -17,19 +17,19 @@ puerto 8080.
 código mismo. Más adelante haremos también parametrizable esta configuración.
 
 >Agregar una ruta '/info' que presente en una vista sencilla los siguientes datos:
-  . Argumentos de entrada
+  >. Argumentos de entrada
 
-  . Path de ejecución
+  >. Path de ejecución
 
-  . Nombre de la plataforma (sistema operativo)
+  >. Nombre de la plataforma (sistema operativo)
 
-  . Process id
+  >. Process id
 
-  . Versión de node.js
+  >. Versión de node.js
 
-  . Carpeta del proyecto
-  
-  . Memoria total reservada (rss)
+  >. Carpeta del proyecto
+
+  >. Memoria total reservada (rss)
 
 >Agregar otra ruta '/api/randoms' que permita calcular un cantidad de números aleatorios
 en el rango del 1 al 1000 especificada por parámetros de consulta (query).
