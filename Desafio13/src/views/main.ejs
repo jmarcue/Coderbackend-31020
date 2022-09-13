@@ -1,6 +1,6 @@
 <%- include ('./layouts/header') -%>
   <%- include ('./layouts/navbar') -%>
-  <% if (success !='' ) { %>
+  <% if (success != '' ) { %>
     <div class="container mt-4">
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Exito:</strong><%= success %>
@@ -10,7 +10,7 @@
       </div>
     </div>
   <% } %>
-  <% if (welcome !='' || success != '') { %>
+  <% if (welcome != '' || success != '') { %>
     <div class="container my-5 py-3 bg-secondary text-white text-center">
       <h4><strong>Bienvenido</strong> <%= welcome %></h4>
       <a href="/user/logout">

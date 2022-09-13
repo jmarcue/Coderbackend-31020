@@ -45,7 +45,7 @@ passport.use('login', new LocalStrategy({
     const userRegistered = await userModel.findOne({ username: username });
 
     if (!userRegistered) {
-      return done(null, false, req.flash('error', 'Usuario y/o Password inválido'));
+      return done(null, false, req.flash('error', 'usuario y/o password inválido'));
     }
     else {
       const matchPassword = await userRegistered.checkPassword(password);
@@ -53,7 +53,7 @@ passport.use('login', new LocalStrategy({
         return done(null, userRegistered, req.flash('welcome', `${username}`));
       }
       else {
-        return done(null, false, req.flash('error', 'Usuario y/o Password inválido'));
+        return done(null, false, req.flash('error', 'usuario y/o password inválido'));
       }
     }
   } catch (error) {

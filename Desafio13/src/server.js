@@ -6,6 +6,7 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
+import('./middlewares/passport.middleware.js');
 import { serverConfig } from './config/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
 

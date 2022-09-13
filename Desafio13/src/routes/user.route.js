@@ -6,10 +6,10 @@ import { validate } from '../middlewares/auth.middleware.js';
 const userRoute = express.Router();
 const user = new userClass();
 
-userRoute.get('/register', user.registerGet)
-userRoute.get('/main', validate, user.mainGet)
-userRoute.get('/logout', user.logout)
-userRoute.get('/login', user.loginGet)
+userRoute.get('/register', user.registerGet);
+userRoute.get('/main', validate, user.mainGet);
+userRoute.get('/logout', user.logout);
+userRoute.get('/login', user.loginGet);
 
 userRoute.post('/register', passport.authenticate("register", {
     successRedirect: "/user/main",
