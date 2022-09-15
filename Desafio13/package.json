@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node ./src/server.js",
-    "dev": "nodemon ./src/server.js -e js",
-    "minimist": "nodemon ./src/server.js -e js -p 3030"
+    "dev": "nodemon ./src/server.js -e js,ejs,css,html",
+    "minimist": "nodemon ./src/server.js -e js,ejs,css,html -p 3030"
   },
   "keywords": [],
   "author": "Jaime Martinez C.",
