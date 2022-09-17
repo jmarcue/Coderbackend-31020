@@ -12,21 +12,21 @@ la ruta de comando que permita ejecutar al servidor en modo fork o cluster. Dich
 parámetro será 'FORK' en el primer caso y 'CLUSTER' en el segundo, y de no
 pasarlo, el servidor iniciará en modo fork.
 
-- Agregar en la vista info, el número de procesadores presentes en el servidor.
+  - Agregar en la vista info, el número de procesadores presentes en el servidor.
 
-- Ejecutar el servidor (modos FORK y CLUSTER) con nodemon verificando el número de
+  - Ejecutar el servidor (modos FORK y CLUSTER) con nodemon verificando el número de
 procesos tomados por node.
 
-- Ejecutar el servidor (con los parámetros adecuados) utilizando Forever, verificando su
+  - Ejecutar el servidor (con los parámetros adecuados) utilizando Forever, verificando su
 correcta operación. Listar los procesos por Forever y por sistema operativo.
 
-- Ejecutar el servidor (con los parámetros adecuados: modo FORK) utilizando PM2 en sus
+  - Ejecutar el servidor (con los parámetros adecuados: modo FORK) utilizando PM2 en sus
 modos modo fork y cluster. Listar los procesos por PM2 y por sistema operativo.
 
-- Tanto en Forever como en PM2 permitir el modo escucha, para que la actualización del
+  - Tanto en Forever como en PM2 permitir el modo escucha, para que la actualización del
 código del servidor se vea reflejado inmediatamente en todos los procesos.
 
-- Hacer pruebas de finalización de procesos fork y cluster en los casos que corresponda.
+  - Hacer pruebas de finalización de procesos fork y cluster en los casos que corresponda.
 
 Configurar Nginx para balancear cargas de nuestro servidor de la siguiente manera:
 Redirigir todas las consultas a /api/randoms a un cluster de servidores escuchando en el puerto
