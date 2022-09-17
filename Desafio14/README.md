@@ -11,6 +11,7 @@ Tomando con base el proyecto que vamos realizando, agregar un parámetro más en
 la ruta de comando que permita ejecutar al servidor en modo fork o cluster. Dicho
 parámetro será 'FORK' en el primer caso y 'CLUSTER' en el segundo, y de no
 pasarlo, el servidor iniciará en modo fork.
+
 ● Agregar en la vista info, el número de procesadores presentes en el servidor.
 ● Ejecutar el servidor (modos FORK y CLUSTER) con nodemon verificando el número de
 procesos tomados por node.
@@ -31,7 +32,7 @@ Luego, modificar la configuración para que todas las consultas a /api/randoms s
 un cluster de servidores gestionado desde nginx, repartiéndolas equitativamente entre 4
 instancias escuchando en los puertos 8082, 8083, 8084 y 8085 respectivamente.
 
->> Aspectos a incluir en el entregable:
+- **Aspectos a incluir en el entregable:**
 Incluir el archivo de configuración de nginx junto con el proyecto.
 Incluir también un pequeño documento en donde se detallen los comandos que deben
 ejecutarse por línea de comandos y los argumentos que deben enviarse para levantar todas las
