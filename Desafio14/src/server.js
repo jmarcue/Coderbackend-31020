@@ -6,6 +6,9 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
+import cluster from 'node:cluster';
+import { cpus } from 'node:os';
+
 import('./middlewares/passport.middleware.js');
 import { serverConfig } from './config/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
@@ -21,6 +24,9 @@ import randomRoute from './routes/random.route.js';
 import messageClass from './controllers/message.controller.js';
 import productClass from './controllers/product.controller.js';
 
+// CPUs
+const numCPUs = cpus().length;
+numCPUs = 2;
 
 // Server 
 const app = express();
@@ -90,8 +96,31 @@ io.on('connection', socket => {
   });
 });
 
-// server connection
-const server = http.listen(PORT, () => {
-  console.log(`Servidor http en puerto: ${server.address().port}`);
-});
-server.on("error", error => console.log(`Error en servidor ${error}`));
+if (serverConfig.MODE == 'FORK') {
+  http.listen(PORT, () => {
+    console.log(`Servidor en Puerto ${PORT} - PID WORKER: ${process.pid}`);
+    app.on("error", error => console.log(`Error en servidor ${error}`));
+  });
+}
+else {
+  if (cluster.isPrimary) {
+    console.log(numCPUs);
+    console.log(`PID MASTER ${process.pid}`);
+
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+
+    cluster.on('exit', worker => {
+      console.log('Worker', worker.process.pid, 'died', new Date().toLocaleString());
+      cluster.fork();
+    });
+  }
+  else {
+    app.listen(PORT, err => {
+      if (!err) {
+        console.log(`Servidor express escuchando en el puerto ${PORT} - PID WORKER ${process.pid}`);
+      }  
+    });   
+  }
+}
