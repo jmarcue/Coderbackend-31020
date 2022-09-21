@@ -45,6 +45,7 @@ ejecutarse por línea de comandos y los argumentos que deben enviarse para levan
 instancias de servidores de modo que soporten la configuración detallada en los puntos
 anteriores.
 Ejemplo:
+
 ● pm2 start ./miservidor.js -- --port=8080 --modo=fork
 
 ● pm2 start ./miservidor.js -- --port=8081 --modo=cluster
