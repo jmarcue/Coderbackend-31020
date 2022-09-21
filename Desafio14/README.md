@@ -46,5 +46,7 @@ instancias de servidores de modo que soporten la configuración detallada en los
 anteriores.
 Ejemplo:
 ● pm2 start ./miservidor.js -- --port=8080 --modo=fork
+
 ● pm2 start ./miservidor.js -- --port=8081 --modo=cluster
+
 ● pm2 start ./miservidor.js -- --port=8082 --modo=fork
