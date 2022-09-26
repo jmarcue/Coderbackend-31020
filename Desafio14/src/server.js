@@ -7,11 +7,10 @@ import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
 import cluster from 'node:cluster';
-import { cpus } from 'node:os';
 
 import('./middlewares/passport.middleware.js');
 import { serverConfig } from './config/server.config.js';
-import { __dirname, __dirJoin } from './utils/helper.util.js';
+import { __dirname, __dirJoin, numCPUs } from './utils/helper.util.js';
 
 // import  routes
 import productRoute from './routes/product.route.js';
@@ -24,9 +23,6 @@ import randomRoute from './routes/random.route.js';
 import messageClass from './controllers/message.controller.js';
 import productClass from './controllers/product.controller.js';
 
-// CPUs
-const numCPUs = cpus().length;
-numCPUs = 2;
 
 // Server 
 const app = express();
@@ -96,16 +92,18 @@ io.on('connection', socket => {
   });
 });
 
+console.log(serverConfig.MODE);
+console.log(serverConfig.PORT);
+
 if (serverConfig.MODE == 'FORK') {
   http.listen(PORT, () => {
-    console.log(`Servidor en Puerto ${PORT} - PID WORKER: ${process.pid}`);
+    console.log(`Servidor en Puerto ${PORT} - Process Id Worker: ${process.pid}`);
     app.on("error", error => console.log(`Error en servidor ${error}`));
   });
 }
 else {
   if (cluster.isPrimary) {
-    console.log(numCPUs);
-    console.log(`PID MASTER ${process.pid}`);
+    console.log(`Process Id master ${process.pid}`);
 
     for (let i = 0; i < numCPUs; i++) {
       cluster.fork();

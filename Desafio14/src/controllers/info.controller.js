@@ -1,3 +1,5 @@
+import { numCPUs } from '../utils/helper.util.js';
+
 export default class infoClass {
   async getInfo(req, res) {
     res.render('info', {
@@ -7,7 +9,8 @@ export default class infoClass {
       memory: process.memoryUsage.rss(),
       path: process.execPath,
       process: process.pid,
-      folder: process.cwd()
+      folder: process.cwd(),
+      processQty: numCPUs
     });
   }
 }

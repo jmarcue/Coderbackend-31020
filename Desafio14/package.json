@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/server.js -e js,ejs,css,html -p 3030",
-    "prod": "forever start -w ./src/server.js -p 3030 -c cluster",
-    "prod_fork": "forever start -w ./src/server.js -p 3030 -c fork"
+    "dev-cluster": "nodemon ./src/server.js -e js,ejs,css,html -p 3030 -m cluster",
+    "dev-fork": "nodemon ./src/server.js -e js,ejs,css,html -p 3030 -m fork",
+    "prod-cluster": "forever start -w ./src/server.js -p 3030 -m cluster",
+    "prod-fork": "forever start -w ./src/server.js -p 3030 -m fork"    
   },
   "keywords": [],
   "author": "Jaime Martinez C.",
