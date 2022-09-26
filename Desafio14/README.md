@@ -80,10 +80,11 @@ forever list
 ```
 
 detener todos los proceso de forever:
+```console
 forever stopall
 ```
 
-Con PM2 teoricamente permite que mediante parámetro podamos recibir el puerto y el modo fork o modo cluster
+Con pm2 teoricamente permite que mediante parámetro podamos recibir el puerto y el modo fork o modo cluster
 se generaron 4 clusters en 8082, 8083, 8084 y 8085:
 
 ```console
@@ -92,8 +93,8 @@ pm2 start ./src/server.js --name="ServerCluster8083" --watch -i 2  -- -p 8083
 pm2 start ./src/server.js --name="ServerCluster8084" --watch -i 2  -- -p 8084
 pm2 start ./src/server.js --name="ServerCluster8085" --watch -i 2  -- -p 8085
 
-nota: este proceso no funciono lo que si pude hacerlo funcionar mediante Fork, por ejemplo:
-pm2 start ./src/server.js --name="ServerFork8082" --watch  -- -p 8082
+nota: este proceso no me funciono correctamente, pero si pude hacerlo funcionar mediante fork y el puerto, por ejemplo:
+pm2 start ./src/server.js --name="ServerFork8082" --watch -- -p 8082
 ```
 
 Listado con servicios activos:
