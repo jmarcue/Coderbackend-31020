@@ -57,25 +57,31 @@ Ejemplo:
 servidor modo cluster:
 ```console
 npm run dev-cluster
+```
 
 servidor modo Fork:
 ```console
 npm run dev-fork
+```
 
 iniciar servidor con forever modo cluster:
 ```console
 npm run prod-cluster
+```
 
 iniciar servidor con forever modo fork:
 ```console
 npm run prod-fork
+```
 
 Listado de procesos con forever:
 ```console
 forever list
+```
 
 detener todos los proceso de forever:
 forever stopall
+```
 
 Con PM2 teoricamente permite que mediante parámetro podamos recibir el puerto y el modo fork o modo cluster
 se generaron 4 clusters en 8082, 8083, 8084 y 8085:
@@ -88,6 +94,7 @@ pm2 start ./src/server.js --name="ServerCluster8085" --watch -i 2  -- -p 8085
 
 nota: este proceso no funciono lo que si pude hacerlo funcionar mediante Fork, por ejemplo:
 pm2 start ./src/server.js --name="ServerFork8082" --watch  -- -p 8082
+```
 
 Listado con servicios activos:
 ```console
@@ -104,21 +111,24 @@ pm2 list
 │ 6   │ ServerCluster8085│ default     │ 1.0.0   │ cluster │ 15664    │ 36s    │ 0    │ online    │ 0%       │ 29.8mb   │ jaime    │ enabled  │
 │ 7   │ ServerCluster8085│ default     │ 1.0.0   │ cluster │ 872      │ 36s    │ 0    │ online    │ 0%       │ 30.1mb   │ jaime    │ enabled  │
 └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+```
 
 Log de pm2:
 ```console
 pm2 logs
-
+```
 
 Monitor en vivo de pm2:
 ```console
 pm2 monit
+```
 
 Bajar todos los servicios activos:
 ```console
 pm2 delete all 
+```
 
-
+realizar cambios en el archivo config de ngnix:
 ```console
 events {
 }
@@ -140,29 +150,32 @@ http {
         }
     }
 }
+```
 
-Chequeo de la configuracion 
+Chequeo de la configuracion: 
 ```console
 nginx -t
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
+```
 
-
-se detiene el nginx
+Detener nginx:
 ```console
 nginx -s stop
+```
 
-chequeo que no este ejecutando
+Verificar que ngnix no se este ejecutando:
 ```console
 tasklist /fi "imagename eq ngnix.exe"
 INFORMACIÓN: no hay tareas ejecutándose que coincidan con los criterios especificados.
+```
 
-Se inicia el servicio
+Inicia el servicio de nginx:
 ```console
 start nginx
+```
 
-
-chequeo que el proceso este activo
+Verificar que el servicio este activo:
 ```console
 tasklist /fi "imagename eq nginx.exe"
 
@@ -174,13 +187,13 @@ nginx.exe                    15564 Console                    1     7.916 KB
 nginx.exe                    20872 Console                    1     8.088 KB
 nginx.exe                    10208 Console                    1     7.916 KB
 nginx.exe                     7864 Console                    1     8.088 KB
+```
 
 acceder a través de http://localhost:8080/random/
+Cuando se agregas un log cuando se genere la lista y podemos comprobarlo a través de **pm2 monit**
 
-Agregamos un log cuando se genere la lista y podemos comprobarlo a través de **pm2 monit**
-
+```console
 pm2 monit
-
 ┌─ Process List ─────────────────────────────────────────────────────────────────────────┐┌──  ServerCluster8082 Logs  ──────────────────────────────────────────────────────────────────────────┐ 
 │[ 0] ServerCluster8082                                 Mem:  51 MB    CPU:  0 %  online ││ ServerCluster8082 > GET /randoms/number?number=100000 200 122.718 ms - 9401                          │ 
 │[ 1] ServerCluster8083                                 Mem:  51 MB    CPU:  0 %  online ││                                                                                                      │ 
@@ -194,3 +207,4 @@ pm2 monit
 │ Heap Size                                                                   23.42 MiB  ││ Restarts              10                                                                             │ 
 │ HTTP P95 Latency                                                               124 ms  ││ Uptime                82s                                                                            │ 
 └────────────────────────────────────────────────────────────────────────────────────────┘└──────────────────────────────────────────────────────────────────────────────────────────────────────┘ 
+```
