@@ -55,6 +55,7 @@ app.use((req, res,next) => {
     next();
 });
 app.use(express.static(__dirJoin(__dirname, '../public')));
+//app.use(compression());
 
 // Ejs
 app.set('views', __dirJoin(__dirname, '../views'));
