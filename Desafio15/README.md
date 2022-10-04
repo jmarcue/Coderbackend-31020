@@ -50,11 +50,9 @@ Al final incluir la conclusión obtenida a partir del análisis de los datos.
 ## Resolucion consigna:
 
 Incorporar al proyecto de servidor de trabajo la compresión gzip. Verificar sobre la ruta /info con y sin compresión:
-```console
-● Prueba del endpoint sin compresión: http://localhost:3030/info
-● Prueba del endpoint con gzip: http://localhost:3030/info/gzip
-```
 
+**● Prueba del endpoint sin compresión:** http://localhost:3030/info
+**● Prueba del endpoint con gzip:** http://localhost:3030/info/gzip
 
 Resultado:
 ```console
@@ -63,25 +61,8 @@ GET /info/gzip 200 1.749 ms
 
 ```
 
-Incorporar log: En carpeta log se encuentra
-```console
-2022-09-30T11:51:46.754Z [32minfo[39m: 	Process Id master 8568
-2022-09-30T11:51:48.173Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 2192
-2022-09-30T11:51:48.177Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 4584
-2022-09-30T11:51:48.178Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 7464
-2022-09-30T11:51:48.204Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 8956
-2022-09-30T11:51:48.210Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 4136
-2022-09-30T11:51:48.226Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 2252
-2022-09-30T11:51:48.230Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 944
-2022-09-30T11:51:48.236Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 17592
-2022-09-30T11:51:48.240Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 11700
-2022-09-30T11:51:48.246Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 1328
-2022-09-30T11:51:48.253Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 16468
-2022-09-30T11:51:48.260Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 16060
-2022-09-30T11:51:48.276Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 12832
-2022-09-30T11:51:48.284Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 18840
-2022-09-30T11:51:48.297Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 18328
-```
+Incorporar log (estos se encuentran en carpeta src/log):
+![Captura1](./src/public/img/3.png)
 
 Pruebas con Artillery:
 
