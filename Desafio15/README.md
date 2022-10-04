@@ -47,7 +47,6 @@ Realizar un informe en formato pdf sobre las pruebas realizadas incluyendo los r
 Al final incluir la conclusión obtenida a partir del análisis de los datos.
 
 
-
 ## Resolucion consigna:
 
 Incorporar al proyecto de servidor de trabajo la compresión gzip. Verificar sobre la ruta /info con y sin compresión:
@@ -84,8 +83,9 @@ Incorporar log: En carpeta log se encuentra
 2022-09-30T11:51:48.297Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 18328
 ```
 
-Pruebas Artillery en modo Fork y Cluster:
+Pruebas con Artillery:
 
+modo fork:
 ```console
 npm run dev-fork
 artillery quick -c 50 -n 20 "http://localhost:3030/info" > result_fork.txt
@@ -117,7 +117,8 @@ vusers.session_length:
   p95: ......................................................................... 854.2
   p99: ......................................................................... 854.2
 ```
-  
+
+Modo cluster:  
 ```console
 npm run dev-cluster
 artillery quick -c 50 -n 20 "http://localhost:3030/info" > result_cluster.txt
