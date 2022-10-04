@@ -317,4 +317,13 @@ Req/Bytes counts sampled once per second.
 ```	
 	
 dev-start:
+```console
+	npm run dev-start.
+```
 ![Captura1](./src/public/img/1.png)
+
+dev-inspect:
+```console
+	npm run dev-inspect.
+```
+![Captura2](./src/public/img/2.png)
