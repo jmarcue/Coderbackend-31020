@@ -52,6 +52,7 @@ Al final incluir la conclusión obtenida a partir del análisis de los datos.
 Incorporar al proyecto de servidor de trabajo la compresión gzip. Verificar sobre la ruta /info con y sin compresión:
 
 **● Prueba del endpoint sin compresión:** http://localhost:3030/info
+
 **● Prueba del endpoint con gzip:** http://localhost:3030/info/gzip
 
 Resultado:
@@ -61,12 +62,12 @@ GET /info/gzip 200 1.749 ms
 
 ```
 
-Incorporar log (estos se encuentran en carpeta src/log):
+**Incorporar log (estos se encuentran en carpeta src/log):**
 ![Captura1](./src/public/img/3.png)
 
-Pruebas con Artillery:
+**Pruebas con Artillery:**
 
-modo fork:
+● Modo fork:
 ```console
 npm run dev-fork
 artillery quick -c 50 -n 20 "http://localhost:3030/info" > result_fork.txt
@@ -99,7 +100,7 @@ vusers.session_length:
   p99: ......................................................................... 854.2
 ```
 
-Modo cluster:  
+● Modo cluster:  
 ```console
 npm run dev-cluster
 artillery quick -c 50 -n 20 "http://localhost:3030/info" > result_cluster.txt
@@ -132,7 +133,7 @@ vusers.session_length:
   p99: ......................................................................... 1002.4
 ```
 
-Pruebas con PROFILING:
+**Pruebas con PROFILING:**
 
 ```console
 npm run dev-prof
@@ -144,7 +145,6 @@ Luego renombre uno de los archivos "isolate-XXXX-v8-XXXX.log" a prof-v8.log, par
 ```console
 node --prof-process prof-v8.log > prof_slow.txt
 ```
-
 
 Resultado:
 ```console
@@ -258,7 +258,7 @@ Statistical profiling result from prof-v8.log, (2188 ticks, 0 unaccounted, 0 exc
       1   50.0%            Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\express-session\index.js:1:1
 ```
 
-Pruebas con AUTOCANNON:
+**Pruebas con AUTOCANNON:**
 
 agregá dos scripts en package.json:
 ```console
@@ -267,7 +267,7 @@ agregá dos scripts en package.json:
 "dev-inspect": "node --inspect ./src/server.js -p 3030"	
 ```
 
-dev-test:
+● dev-test:
 ```console
 	npm run dev-test.
 ```
@@ -297,13 +297,13 @@ Req/Bytes counts sampled once per second.
 171k errors (0 timeouts)	
 ```	
 	
-dev-start:
+● dev-start:
 ```console
 	npm run dev-start.
 ```
 ![Captura1](./src/public/img/1.png)
 
-dev-inspect:
+● dev-inspect:
 ```console
 	npm run dev-inspect.
 ```
