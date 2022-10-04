@@ -137,7 +137,7 @@ vusers.session_length:
 
 ```console
 npm run dev-prof
-artillery quick -c 50 -n 20 "http://localhost:8080/info" > artillery_prof.txt  
+artillery quick -c 50 -n 20 "http://localhost:3030/info" > artillery_prof.txt  
 ```
 
 Luego renombre uno de los archivos "isolate-XXXX-v8-XXXX.log" a prof-v8.log, para convertir a legible el log
@@ -148,121 +148,128 @@ node --prof-process prof-v8.log > prof_slow.txt
 
 Resultado:
 ```console
-Statistical profiling result from prof-v8.log, (2188 ticks, 0 unaccounted, 0 excluded).
+Statistical profiling result from prof-v8.log, (3370 ticks, 0 unaccounted, 0 excluded).
 
- [Shared libraries]:
-   ticks  total  nonlib   name
-   2060   94.1%          C:\Windows\SYSTEM32\ntdll.dll
-    125    5.7%          C:\Program Files\nodejs\node.exe
-      1    0.0%          C:\Windows\System32\KERNEL32.DLL
+[Shared libraries]:
+  ticks  total  nonlib   name
+  3240   96.1%          C:\Windows\SYSTEM32\ntdll.dll
+  128    3.8%          C:\Program Files\nodejs\node.exe
 
- [JavaScript]:
-   ticks  total  nonlib   name
-      1    0.0%   50.0%  Function: ^getPathFromURLWin32 node:internal/url:1363:29
-      1    0.0%   50.0%  Function: ^<anonymous> node:internal/fs/utils:358:35
+[JavaScript]:
+  ticks  total  nonlib   name
+    1    0.0%   50.0%  LazyCompile: *resolve node:path:158:10
+    1    0.0%   50.0%  Function: ^handleErrorFromBinding node:internal/fs/utils:341:32
 
- [C++]:
-   ticks  total  nonlib   name
+[C++]:
+  ticks  total  nonlib   name
 
- [Summary]:
-   ticks  total  nonlib   name
-      2    0.1%  100.0%  JavaScript
-      0    0.0%    0.0%  C++
-      6    0.3%  300.0%  GC
-   2186   99.9%          Shared libraries
+[Summary]:
+  ticks  total  nonlib   name
+    2    0.1%  100.0%  JavaScript
+    0    0.0%    0.0%  C++
+    4    0.1%  200.0%  GC
+  3368   99.9%          Shared libraries
 
- [C++ entry points]:
-   ticks    cpp   total   name
+[C++ entry points]:
+  ticks    cpp   total   name
 
- [Bottom up (heavy) profile]:
-  Note: percentage shows a share of a particular caller in the total
-  amount of its parent calls.
-  Callers occupying less than 1.0% are not shown.
+[Bottom up (heavy) profile]:
+Note: percentage shows a share of a particular caller in the total
+amount of its parent calls.
+Callers occupying less than 1.0% are not shown.
 
-   ticks parent  name
-   2060   94.1%  C:\Windows\SYSTEM32\ntdll.dll
+  ticks parent  name
+  3240   96.1%  C:\Windows\SYSTEM32\ntdll.dll
 
-    125    5.7%  C:\Program Files\nodejs\node.exe
-    104   83.2%    C:\Program Files\nodejs\node.exe
-     25   24.0%      Function: ^compileFunction node:vm:308:25
-     25  100.0%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
-     25  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
-     25  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
-     14   13.5%      Function: ^realpathSync node:fs:2425:22
-     12   85.7%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
-     10   83.3%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
-     10  100.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-      2   16.7%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      2  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-      1    7.1%        LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
-      1  100.0%          LazyCompile: ~tryFile node:internal/modules/cjs/loader:384:17
-      1  100.0%            LazyCompile: ~tryExtensions node:internal/modules/cjs/loader:400:23
-      1    7.1%        Function: ^finalizeResolution node:internal/modules/esm/resolve:397:28
-      1  100.0%          Function: ^moduleResolve node:internal/modules/esm/resolve:988:23
-      1  100.0%            Function: ^defaultResolve node:internal/modules/esm/resolve:1128:30
-     12   11.5%      Function: ^stat node:internal/modules/cjs/loader:151:14
-      8   66.7%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      8  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-      8  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
-      4   33.3%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
-      4  100.0%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-      3   75.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      1   25.0%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
-      7    6.7%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      7  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
-      2   28.6%          Function: ~<anonymous> node:crypto:1:1
-      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          LazyCompile: ~initCJSParse node:internal/modules/esm/translators:58:28
-      1  100.0%            LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
-      1   14.3%          Function: ~<anonymous> node:tls:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:internal/source_map/source_map_cache:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:internal/modules/esm/loader:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:http:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      4    3.8%      Function: ^openSync node:fs:576:18
-      4  100.0%        Function: ^readFileSync node:fs:450:22
-      4  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
-      4  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      3    2.9%      LazyCompile: ~open node:internal/fs/promises:450:20
-      3  100.0%        LazyCompile: ~readFile node:internal/fs/promises:788:24
-      3  100.0%          LazyCompile: ~defaultGetSource node:internal/modules/esm/get_source:30:32
-      3  100.0%            LazyCompile: ~defaultLoad node:internal/modules/esm/load:13:27
-      3    2.9%      Function: ^closeSync node:fs:526:19
-      3  100.0%        Function: ^readFileSync node:fs:450:22
-      3  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
-      3  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      2    1.9%      LazyCompile: ~isatty node:tty:42:16
-      2  100.0%        LazyCompile: ~useColors D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\debug\src\node.js:75:19
-      2  100.0%          LazyCompile: ~createDebug D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\debug\src\debug.js:63:21
-      1   50.0%            Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\send\index.js:1:1
-      1   50.0%            Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\express\lib\router\route.js:1:1
-      2    1.9%      Function: ^getOptions node:internal/fs/utils:315:20
-      2  100.0%        Function: ^readFileSync node:fs:450:22
-      2  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
-      2  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      2    1.6%    Function: ^toRealPath node:internal/modules/cjs/loader:393:20
-      2  100.0%      Function: ^tryFile node:internal/modules/cjs/loader:384:17
-      2  100.0%        Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-      1   50.0%          Function: ^tryPackage node:internal/modules/cjs/loader:338:20
-      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      1   50.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-      2    1.6%    Function: ^Module node:internal/modules/cjs/loader:172:16
-      2  100.0%      Function: ^Module._load node:internal/modules/cjs/loader:757:24
-      2  100.0%        Function: ^Module.require node:internal/modules/cjs/loader:997:36
-      2  100.0%          Function: ^require node:internal/modules/cjs/helpers:101:31
-      1   50.0%            Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\socket.io\dist\client.js:1:1
-      1   50.0%            Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\express-session\index.js:1:1
+  128    3.8%  C:\Program Files\nodejs\node.exe
+  105   82.0%    C:\Program Files\nodejs\node.exe
+    36   34.3%      Function: ^compileFunction node:vm:308:25
+    36  100.0%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+    36  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+    36  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+    13   12.4%      Function: ^realpathSync node:fs:2425:22
+    10   76.9%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+    9   90.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+    6   66.7%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+    2   22.2%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+    1   11.1%            LazyCompile: ~tryPackage node:internal/modules/cjs/loader:338:20
+    1   10.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+    1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+    2   15.4%        LazyCompile: ~finalizeResolution node:internal/modules/esm/resolve:397:28
+    2  100.0%          Function: ^moduleResolve node:internal/modules/esm/resolve:988:23
+    2  100.0%            LazyCompile: ~defaultResolve node:internal/modules/esm/resolve:1128:30
+    1    7.7%        LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
+    1  100.0%          LazyCompile: ~tryFile node:internal/modules/cjs/loader:384:17
+    1  100.0%            LazyCompile: ~tryExtensions node:internal/modules/cjs/loader:400:23
+    11   10.5%      Function: ^stat node:internal/modules/cjs/loader:151:14
+    7   63.6%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
+    7  100.0%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+    7  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+    4   36.4%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+    4  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+    4  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+    5    4.8%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    5  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+    2   40.0%          Function: ~<anonymous> node:http:1:1
+    2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    1   20.0%          Function: ~<anonymous> node:internal/process/esm_loader:1:1
+    1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    1   20.0%          Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+    1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    1   20.0%          Function: ~<anonymous> node:internal/crypto/hkdf:1:1
+    1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    3    2.9%      Function: ^read node:internal/modules/package_json_reader:16:14
+    2   66.7%        Function: ^readPackage node:internal/modules/cjs/loader:290:21
+    2  100.0%          Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+    2  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+    1   33.3%        LazyCompile: ~readPackage node:internal/modules/cjs/loader:290:21
+    1  100.0%          LazyCompile: ~resolveExports node:internal/modules/cjs/loader:472:24
+    1  100.0%            LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
+    3    2.9%      C:\Program Files\nodejs\node.exe
+    1   33.3%        LazyCompile: ~resolvePackageTargetString node:internal/modules/esm/resolve:507:36
+    1  100.0%          LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:572:30
+    1  100.0%            LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:572:30
+    1   33.3%        Function: ^deprecate node:internal/util:96:19
+    1  100.0%          Function: ~<anonymous> node:tls:1:1
+    1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    1   33.3%        Function: ^FastBuffer node:internal/buffer:958:14
+    1  100.0%          Function: ^createUnsafeBuffer node:internal/buffer:1059:28
+    1  100.0%            LazyCompile: ~allocate node:buffer:398:18
+    2    1.9%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    2  100.0%        LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+    1   50.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+    1   50.0%          Function: ~<anonymous> node:internal/child_process:1:1
+    1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    2    1.9%      LazyCompile: ~Resolver node:internal/dns/utils:53:14
+    2  100.0%        Function: ~<anonymous> node:internal/dns/utils:1:1
+    2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
+    2  100.0%            Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
+    2    1.9%      Function: ^closeSync node:fs:526:19
+    2  100.0%        Function: ^readFileSync node:fs:450:22
+    2  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+    2  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+    2    1.9%      Function: ^URL node:internal/url:621:14
+    1   50.0%        Function: ^defaultGetFormatWithoutErrors node:internal/modules/esm/get_format:103:39
+    1  100.0%          Function: ^defaultResolve node:internal/modules/esm/resolve:1128:30
+    1  100.0%            Function: ^resolve node:internal/modules/esm/loader:556:16
+    1   50.0%        Function: ^URL node:internal/url:621:14
+    1  100.0%          Function: ^getPackageScopeConfig node:internal/modules/esm/resolve:253:31
+    1  100.0%            Function: ^getPackageType node:internal/modules/esm/resolve:848:24
+    2    1.6%    Function: ^Module.require node:internal/modules/cjs/loader:997:36
+    2  100.0%      Function: ^require node:internal/modules/cjs/helpers:101:31
+    1   50.0%        Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\ws\index.js:1:1
+    1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+    1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+    1   50.0%        Function: ~<anonymous> D:\Dev\Coderhouse\Coderbackend-31020\Desafio15\node_modules\whatwg-url\webidl2js-wrapper.js:1:1
+    1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+    1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
 ```
 
 **Pruebas con AUTOCANNON:**
 
 agregá dos scripts en package.json:
 ```console
-"dev-test": "node ./src/utils/benchmark.util.js",
+"dev-test": "node ./src/utils/benchmark.util.js -p 3030",
 "dev-start": "0x ./src/server.js",
 "dev-inspect": "node --inspect ./src/server.js -p 3030"	
 ```
@@ -274,7 +281,7 @@ agregá dos scripts en package.json:
 
 resultado:
 ```console	
-Running 20s test @ http://localhost:8080/info
+Running 20s test @ http://localhost:3030/info
 100 connections
 
 ┌─────────┬──────┬──────┬───────┬──────┬──────┬───────┬──────┐

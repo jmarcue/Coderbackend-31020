@@ -9,7 +9,7 @@
     "dev-cluster": "node ./src/server.js -p 3030 -m cluster",
     "dev-fork": "node ./src/server.js -p 3030 -m fork",
     "dev-prof": "node --prof ./src/server.js -p 3030 -m fork",
-    "dev-test": "node ./src/utils/benchmark.util.js",
+    "dev-test": "node ./src/utils/benchmark.util.js -p 3030",
     "dev-start": "0x ./src/server.js",
     "dev-inspect": "node --inspect ./src/server.js -p 3030"
   },

@@ -20,8 +20,8 @@ function run(url) {
 	});
 }
 
+console.log(serverConfig.PORT);
+run(`http://localhost:${serverConfig.PORT}/info`);
 
-run(`http://localhost:3030/info`);
-
-//run(`http://localhost:${serverConfig.PORT}/info`);
+//run(`http://localhost:3030/info`);
 //run(`http://localhost:${serverConfig.PORT}/info/gzip`);

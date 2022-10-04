@@ -245,3 +245,20 @@
 2022-10-04T19:00:14.872Z [32minfo[39m: 	Servidor en Puerto 3030 - Process Id Worker: 16508
 2022-10-04T19:01:18.865Z [32minfo[39m: 	Servidor en Puerto 8080 - Process Id Worker: 18100
 2022-10-04T21:09:33.105Z [32minfo[39m: 	Servidor en Puerto 3030 - Process Id Worker: 17724
+2022-10-04T21:28:27.666Z [32minfo[39m: 	Process Id master 920
+2022-10-04T21:28:29.920Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 324
+2022-10-04T21:28:29.927Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 13248
+2022-10-04T21:28:29.933Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 21404
+2022-10-04T21:28:29.939Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 17488
+2022-10-04T21:28:29.948Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 13888
+2022-10-04T21:28:29.955Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 19672
+2022-10-04T21:28:29.966Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 16884
+2022-10-04T21:28:30.035Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 1408
+2022-10-04T21:28:30.061Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 15500
+2022-10-04T21:28:30.063Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 19696
+2022-10-04T21:28:30.065Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 22372
+2022-10-04T21:28:30.100Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 18564
+2022-10-04T21:28:30.105Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 19736
+2022-10-04T21:28:30.126Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 22384
+2022-10-04T21:28:30.134Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 19324
+2022-10-04T21:28:30.156Z [32minfo[39m: 	Servidor express escuchando en el puerto 3030 - PID WORKER 21880
