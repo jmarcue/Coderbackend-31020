@@ -281,9 +281,9 @@ Pruebas con AUTOCANNON:
 
 agregá dos scripts en package.json:
 ```console
-	"dev-test": "node ./src/utils/benchmark.util.js",
-    "dev-start": "0x ./src/server.js",
-	"dev-inspect": "node --inspect ./src/server.js -p 3030"	
+"dev-test": "node ./src/utils/benchmark.util.js",
+"dev-start": "0x ./src/server.js",
+"dev-inspect": "node --inspect ./src/server.js -p 3030"	
 ```
 
 dev-test:
@@ -295,7 +295,6 @@ resultado:
 ```console	
 Running 20s test @ http://localhost:8080/info
 100 connections
-
 
 ┌─────────┬──────┬──────┬───────┬──────┬──────┬───────┬──────┐
 │ Stat    │ 2.5% │ 50%  │ 97.5% │ 99%  │ Avg  │ Stdev │ Max  │
@@ -318,3 +317,4 @@ Req/Bytes counts sampled once per second.
 ```	
 	
 dev-start:
+![Captura1](./src/public/img/1.png)
