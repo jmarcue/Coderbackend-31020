@@ -7,9 +7,10 @@ import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
 import cluster from 'node:cluster';
-
 import('./middlewares/passport.middleware.js');
 import { serverConfig } from './config/server.config.js';
+import { logger } from './config/winston.config.js';
+
 import { __dirname, __dirJoin, numCPUs } from './utils/helper.util.js';
 
 // import  routes
@@ -76,7 +77,7 @@ const prodClass = new productClass();
 // Sockets
 let toChat = []
 io.on('connection', socket => {
-  console.log(`Cliente hash:${socket.id} inició conexión`);
+  logger.info.info(`Cliente hash:${socket.id} inició conexión`);
   io.sockets.emit('new-message-server', toChat)
 
   socket.on('new-message', async data => {
@@ -95,27 +96,27 @@ io.on('connection', socket => {
 
 if (serverConfig.MODE == 'FORK') {
   http.listen(PORT, () => {
-    console.log(`Servidor en Puerto ${PORT} - Process Id Worker: ${process.pid}`);
-    app.on("error", error => console.log(`Error en servidor ${error}`));
+    logger.info.info(`Servidor en Puerto ${PORT} - Process Id Worker: ${process.pid}`);
+    app.on("error", error => logger.error.error(`Error en servidor ${error}`));
   });
 }
 else {
   if (cluster.isPrimary) {
-    console.log(`Process Id master ${process.pid}`);
+    logger.info.info(`Process Id master ${process.pid}`);
 
     for (let i = 0; i < numCPUs; i++) {
       cluster.fork();
     }
 
     cluster.on('exit', worker => {
-      console.log('Worker', worker.process.pid, 'died', new Date().toLocaleString());
+      logger.info.info('Worker', worker.process.pid, 'died', new Date().toLocaleString());
       cluster.fork();
     });
   }
   else {
     app.listen(PORT, err => {
       if (!err) {
-        console.log(`Servidor express escuchando en el puerto ${PORT} - PID WORKER ${process.pid}`);
+        logger.info.info(`Servidor express escuchando en el puerto ${PORT} - PID WORKER ${process.pid}`);
       }  
     });   
   }

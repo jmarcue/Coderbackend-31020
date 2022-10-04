@@ -5,9 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/server.js -e js,ejs,css,html -p 3030 -m fork",
-    "dev-cluster": "nodemon ./src/server.js -e js,ejs,css,html -p 3030 -m cluster",
-    "dev-fork": "nodemon ./src/server.js -e js,ejs,css,html -p 3030 -m fork"
+    "dev": "nodemon ./src/server.js -e js,ejs,css,html -p 3030",
+    "dev-cluster": "node ./src/server.js -p 3030 -m cluster",
+    "dev-fork": "node ./src/server.js -p 3030 -m fork",
+    "dev-prof": "node --prof ./src/server.js -p 3030 -m fork",
+    "dev-test": "node ./src/utils/benchmark.util.js",
+    "dev-start": "0x ./src/server.js",
+    "dev-inspect": "node --inspect ./src/server.js -p 3030"
   },
   "keywords": [],
   "author": "Jaime Martinez C.",
@@ -28,6 +32,9 @@
     "socket.io": "^4.5.2"
   },
   "devDependencies": {
+    "0x": "^5.4.1",
+    "artillery": "^2.0.0-23",
+    "autocannon": "^7.10.0",
     "compression": "^1.7.4",
     "nodemon": "^2.0.19",
     "winston": "^3.8.2"
