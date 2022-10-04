@@ -58,7 +58,7 @@ Incorporar al proyecto de servidor de trabajo la compresión gzip. Verificar sob
 Resultado:
 ```console
 GET /info      200 1.552 ms 
-GET /info/gzip 200 1.749 ms 
+GET /info/gzip 200 1.249 ms 
 
 ```
 
