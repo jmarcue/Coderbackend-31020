@@ -1,0 +1,40 @@
+<div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+    <div class="card">
+        <h5 class="text-center mb-4">Listado de productos</h5>
+        {{#if Product.products }}
+          <table class="table">
+            <thead class="bg-light">
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Foto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each Product.products}}
+                <tr class="text-center">
+                  <td class="align-middle">#{{this.id}}</td>
+                  <td class="align-middle">{{this.name}}</td>
+                  <td class="align-middle">${{this.price}}</td>
+                  <td class="align-middle">
+                      <img src="{{this.url}}" alt="{{this.name}}" style="width: 45px; height: 45px" class="rounded-circle" />
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        {{else}}
+          <h2 class="text-center mb-4">No se encontraron productos</h2>
+        {{/if}}
+    </div>
+    <div class="card">
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6">
+                <a href="./productos">
+                    <button class="btn btn-warning">Agregar Productos</button>
+                </a>     
+            </div>
+        </div>        
+    </div>
+</div>

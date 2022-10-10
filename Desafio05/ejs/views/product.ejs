@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+        <title>Desafio 05 - EJS</title>
+    </head>
+    <body>
+      <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <div class="card">
+              <h5 class="text-center mb-4">Listado de productos</h5>
+                <% if (Product.products && Product.products.length > 0) { %>
+                  <table class="table">
+                    <thead class="bg-light">
+                      <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Foto</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% Product.products.forEach(function(product){ %>
+                        <tr class="text-center">
+                          <td class="align-middle">#<%= product.id %></td>
+                          <td class="align-middle"><%= product.name %></td>
+                          <td class="align-middle"><%= product.price %></td>
+                          <td class="align-middle">
+                              <img src="<%= product.url %>" alt="<%= product.name %>" style="width: 45px; height: 45px" class="rounded-circle" />
+                          </td>
+                        </tr>
+                      <% }); %>
+                    </tbody>
+                  </table>
+                <% } else { %>
+                  <h2 class="text-center mb-4">No se encontraron productos</h2>
+                <% } %>
+            </div>
+            <div class="card">
+              <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                  <a href="./productos">
+                    <button class="btn btn-warning">Agregar Productos</button>
+                  </a>     
+                </div>
+              </div>        
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

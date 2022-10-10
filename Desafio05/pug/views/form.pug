@@ -1,0 +1,28 @@
+include ./main.pug
+
+.container-fluid.px-1.py-5.mx-auto
+  .row.d-flex.justify-content-center
+    .col-xl-7.col-lg-8.col-md-9.col-11.text-center
+      .card
+        h5.text-center.mb-4 Ingreso de productos
+        form.form-card(action='/productos' method='post')
+          .row.justify-content-between.text-left
+            .form-group.col-sm-6.flex-column.d-flex
+              label.form-control-label.px-3(for='name') Nombre
+              input.form-control(type='text' name='name' placeholder='Ingrese nombre')
+          .row.justify-content-between.text-left
+            .form-group.col-sm-6.flex-column.d-flex
+              label.form-control-label.px-3(for='price') Precio
+              input.form-control(type='number' name='price' placeholder='Ingrese Precio')
+          .row.justify-content-between.text-left
+            .form-group.col-sm-6.flex-column.d-flex
+              label.form-control-label.px-3(for='url') Url
+              input.form-control(type='url' name='url' placeholder='Ingrese url')
+          .row.justify-content-center
+            .form-group.col-sm-6
+              button.btn-block.btn-primary(type='submit') Guardar Producto
+      .card
+        .row.justify-content-center
+          .form-group.col-sm-6
+            a(href='./listaproductos')
+              button.btn.btn-warning Ver Productos

@@ -1,0 +1,30 @@
+include ./main.pug
+
+.container-fluid.px-1.py-5.mx-auto
+  .row.d-flex.justify-content-center
+    .col-xl-7.col-lg-8.col-md-9.col-11.text-center
+      .card
+        h5.text-center.mb-4 Listado de productos
+        if Product.products.length > 0
+          table.table
+            thead.bg-light
+              tr
+                th Id
+                th Nombre
+                th Precio
+                th Foto
+            tbody
+              each product in Product.products
+                tr.text-center
+                  td.align-middle # #{product.id}
+                  td.align-middle #{product.name} 
+                  td.align-middle $ #{product.price}
+                  td.align-middle
+                    img.rounded-circle(src=product.url alt=product.name style="width: 45px; height: 45px")
+        else
+          h2.text-center.mb-4 No se encontraron productos
+      .card
+        .row.justify-content-center
+          .form-group.col-sm-6
+            a(href="./productos")
+              button.btn.btn-warning Agregar Productos
