@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Productos</title>
+    </head>
+    <body>
+        <header>
+            <link rel="stylesheet" type="text/css" href="style.css" media="all" />                
+        </header>        
+        <div class="form-style">
+            <div class="form-style-heading">Ingreso de productos</div>
+            <form action="api/productos" method="post">
+                <label for="title">
+                    <span>Titulo</span>
+                    <input type="text" class="input-field" name="title" placeholder="Titulo"/>
+                </label>
+                <label for="price">
+                    <span>Precio</span>
+                    <input type="text" class="input-field" name="price" placeholder="Precio"/>
+                </label>
+                <label for="thumbnail">
+                    <span>Miniatura</span>
+                    <input type="text" class="input-field" name="thumbnail" placeholder="Miniatura"/>
+                </label>
+                <label>
+                    <input type="submit" value="Submit"/>
+                </label>
+            </form>
+        </div>
+    </body>
+</html>
