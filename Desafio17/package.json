@@ -1,0 +1,42 @@
+{
+  "name": "desafio17",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ./src/server.js -e js,ejs,css,html -p 3030",
+    "dev-cluster": "node ./src/server.js -p 3030 -m cluster",
+    "dev-fork": "node ./src/server.js -p 3030 -m fork",
+    "dev-prof": "node --prof ./src/server.js -p 3030 -m fork",
+    "dev-test": "node ./src/utils/benchmark.util.js -p 3030",
+    "dev-start": "0x ./src/server.js",
+    "dev-inspect": "node --inspect ./src/server.js -p 3030"
+  },
+  "keywords": [],
+  "author": "Jaime Martinez C.",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "minimist": "^1.2.6",
+    "mongoose": "^6.6.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.5.2"
+  },
+  "devDependencies": {
+    "0x": "^5.4.1",
+    "artillery": "^2.0.0-23",
+    "autocannon": "^7.10.0",
+    "compression": "^1.7.4",
+    "nodemon": "^2.0.19",
+    "winston": "^3.8.2"
+  }
+}
