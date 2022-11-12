@@ -8,13 +8,14 @@ class productPersistence extends productDao {
   constructor () {
     super()
     this.cxn = new mongoConnect();
-    this.msg = console.log('*** Base de Datos Mongo');
+    this.msg = console.log('database mongo');
   }
 
   async addPersistenceProducto(dataToDb) {
     try {
       await productModel.create(dataToDb);
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -23,7 +24,8 @@ class productPersistence extends productDao {
     try {
       const prodInDb = await productModel.find({});
       return prodInDb;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -34,7 +36,8 @@ class productPersistence extends productDao {
       const myDto = productDto(await prodById);
       console.log('DTO',myDto);
       return myDto;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -43,7 +46,8 @@ class productPersistence extends productDao {
     try {
       const prodToDel = await productModel.deleteOne({ _id });
       return prodToDel;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -54,7 +58,8 @@ class productPersistence extends productDao {
         new: true,
       });
       return prodUpdated;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }

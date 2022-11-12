@@ -8,4 +8,5 @@ const productoSchema = new Schema({
 });
 
 const productModel = mongoose.model('productModel', productoSchema, 'products');
+
 export default productModel;
