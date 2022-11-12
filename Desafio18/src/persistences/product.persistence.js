@@ -34,7 +34,7 @@ class productPersistence extends productDao {
     try {
       const prodById = await productModel.findOne({ _id });
       const myDto = productDto(await prodById);
-      console.log('DTO',myDto);
+      console.log('DTO', myDto);
       return myDto;
     }
     catch (error) {

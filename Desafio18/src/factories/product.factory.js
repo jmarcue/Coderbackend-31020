@@ -14,7 +14,8 @@ class productFactory {
         thumbnail: data.thumbnail,
       };
       return await this.database.addPersistenceProducto(dataToDb);
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -23,7 +24,8 @@ class productFactory {
     try {
       const prodInDb = await this.database.findAllPersistenceProducto();
       return prodInDb;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -32,7 +34,8 @@ class productFactory {
     try {
       const prodById = await this.database.findByIDPersistenceProducto(_id);
       return prodById;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
@@ -41,19 +44,18 @@ class productFactory {
     try {
       const prodToDel = await this.database.deletePersistenceProducto(_id);
       return prodToDel;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
 
   async updateServiceProducto(_id, data) {
     try {
-      const prodUpdated = await this.database.updatePersistenceProducto(
-        _id,
-        data
-      );
+      const prodUpdated = await this.database.updatePersistenceProducto(_id, data);
       return prodUpdated;
-    } catch (error) {
+    }
+    catch (error) {
       logger.error.error(error);
     }
   }
