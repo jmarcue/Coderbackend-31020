@@ -8,11 +8,15 @@ class productClass {
         return res.status(404).json({ mensaje: 'Error al agregar un producto' });
       }
       
-      const data = {
-        title: req.producto.title,
-        price: req.producto.price,
-        thumbnail: req.producto.thumbnail
+      const data = { ...req.body };
+      if (data === "") {
+        data = {
+          title: req.producto.title,
+          price: req.producto.price,
+          thumbnail: req.producto.thumbnail
+        }
       }
+
       const newProduct = await productModel.create(data);
     }
     catch (error) {

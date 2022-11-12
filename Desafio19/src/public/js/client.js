@@ -62,23 +62,24 @@ document.getElementById("btnOldMsg").addEventListener("click", function () {
 document.getElementById('btnForm').addEventListener('click', () => { validarForm() });
 
 function validarForm() {
-    let title = document.getElementById('title').value;
-    let price = document.getElementById('price').value;
-    let thumbnail = document.getElementById('thumbnail').value;
-    if (title === "" || price === "" || thumbnail === "") {
-        alert('Favor ingresar los campos requeridos');
-    } else {
-        let newProd = {
-            title: document.getElementById('title').value,
-            price: document.getElementById('price').value,
-            thumbnail: document.getElementById('thumbnail').value
-        };
-        socket.emit('new-producto', newProd)
-        
-        document.getElementById('title').value = ""
-        document.getElementById('price').value = ""
-        document.getElementById('thumbnail').value = ""
+  let title = document.getElementById('title').value;
+  let price = document.getElementById('price').value;
+  let thumbnail = document.getElementById('thumbnail').value;
+  if (title === "" || price === "" || thumbnail === "") {
+    alert('Favor ingresar los campos requeridos');
+  }
+  else {
+    let newProd = {
+        title: document.getElementById('title').value,
+        price: document.getElementById('price').value,
+        thumbnail: document.getElementById('thumbnail').value
     };
+    socket.emit('new-producto', newProd)
+    
+    document.getElementById('title').value = ""
+    document.getElementById('price').value = ""
+    document.getElementById('thumbnail').value = ""
+  };
 }
 
 
