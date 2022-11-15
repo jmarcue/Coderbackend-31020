@@ -50,7 +50,7 @@ Resultado:
       ✔ Eliminacion  producto por id (173ms)
 
   4 passing (634ms)
-  ```console 
+```
 
 **● Test axios-client.test:**  
 Resultado:
@@ -505,4 +505,4 @@ DELETE {
     __v: 0
   }
 ]
-```console 
+``` 
