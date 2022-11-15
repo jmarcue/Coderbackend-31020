@@ -4,37 +4,36 @@ import { expect } from 'chai';
 
 const baseUrl = 'http://localhost:8080';
 const url = '/api/productos';
-const producId = '6372dac907291eafe15d05ea'; // id del producto
-const urlModify = `/api/productos/${producId}`; 
-const price = 10000;
-const product = {
-  "title": 'superTest', 
-  "price": 21100,
-  "thumbnail": 'https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/circle-check-512.png'
-};
+const producId = '6372d9f84340cd75798976ef'; // id del producto
+const productPrice = 10000;
 
 describe("Test API REST", ()=>{
   describe('Test get producto', () => {
-    it('exitos retorna status 200', async()=> {
+    it('obtiene productos', async()=> {
       let response = await request(baseUrl).get(url);
       expect(response.status).to.eql(200);
     });
   });
-  describe('test post producto', ()=> {
+  describe('Test post producto', ()=> {
     it('Crea producto', async()=> {
-      const response = await request(baseUrl).post(url).send(product);
+      let postProduct = { 
+        title: 'tongue', 
+        price: 1200,
+        thumbnail: 'https://cdn3.iconfinder.com/data/icons/font-awesome-regular-1/512/face-grin-tongue-256.png'
+      };      
+      const response = await request(baseUrl).post(url).send(postProduct);
       expect(response.status).to.equal(200);
     });
   });
-  describe('test update producto', ()=>{
+  describe('Test update producto', ()=>{
     it('Modificacion precio producto por id', async()=> {
-      let response = await request(baseUrl).put(urlModify).send({price: price});
+      let response = await request(baseUrl).put(`${url}/${producId}`).send({price: productPrice});
       expect(response.status).to.eql(200);
     });
   });
-  describe('test delete producto', ()=>{
+  describe('Test delete producto', ()=>{
     it('Eliminacion  producto por id', async()=>{
-      let response = await request(baseUrl).delete(urlModify).send();
+      let response = await request(baseUrl).delete(`${url}/${producId}`).send();
       expect(response.status).to.eql(200);
     });
   });
