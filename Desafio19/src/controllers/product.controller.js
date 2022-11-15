@@ -18,6 +18,7 @@ class productClass {
       }
 
       const newProduct = await productModel.create(data);
+      return res.status(200).json(newProduct);
     }
     catch (error) {
       console.log(error);
