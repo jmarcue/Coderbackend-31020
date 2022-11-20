@@ -6,10 +6,12 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash'
 import morgan from 'morgan';
+import { graphqlHTTP } from 'express-graphql';
+
 import('./middlewares/passport.middleware.js');
 import { serverConfig } from './config/server.config.js';
 import { __dirname, __dirJoin } from './utils/helper.util.js';
-
+import { schema, root } from './graphql/schema.graphql.js';
 // import  routes
 import productRoute from './routes/product.route.js';
 import messageRoute from './routes/message.route.js';
@@ -65,6 +67,11 @@ app.use('/mensajes', messageRoute);
 app.use('/user', userRoute);
 app.use('/info', infoRoute);
 app.get('/', function (req, res) { res.render('index') });
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+}));
 
 // call controllers.
 const messages = new messageClass();
