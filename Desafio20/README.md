@@ -17,5 +17,5 @@ actualizar y borrar recursos.
 ● Utilizar GraphiQL para realizar la prueba funcional de los querys y las mutaciones
 
 
-**GraphiQL:**
+**GraphiQLresultado:**
 ![Captura1](./src/public/img/graphiQl.png)
