@@ -15,3 +15,7 @@ apropiadamente con el backend y así realizar las distintas operaciones de pedir
 actualizar y borrar recursos.
 
 ● Utilizar GraphiQL para realizar la prueba funcional de los querys y las mutaciones
+
+
+**GraphiQL:**
+![Captura1](./src/public/img/graphiQl.png)
